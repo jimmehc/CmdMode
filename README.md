@@ -5,10 +5,10 @@ Allows for switching back and forth between CMD and PowerShell in the same sessi
 
 ## Getting Started
 ### Prequisites
-If you are not on Windows 10, I recommend installing PSReadLine to get the most out of this module.
+If you are not on Windows 10, I recommend installing [PSReadLine](https://github.com/lzybkr/PSReadLine) to get the most out of this module.
 
 ### Installation
-Install via the PowerShell Gallery like so:
+Install via the [PowerShell Gallery](https://www.powershellgallery.com) like so:
 ```
 Install-Module CmdMode
 Import-Module CmdMode

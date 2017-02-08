@@ -179,17 +179,20 @@ function Get-CmdWrappedCommand
 
     [string]$line = Get-EscapedString $line
 
-    $wrappedCommand =  "`$setOut = New-TemporaryFile;"
-    $wrappedCommand += "`$cdOut = New-TemporaryFile;"
-    $wrappedCommand += "cmd /s /c `" $line & set > `$setOut & cd > `$cdOut `";"
-    $wrappedCommand += "Get-Content `$setOut | %{ ,(`$_ -split `"=`") } | %{ Set-Item -Path `"env:`$(`$_[0])`" -Value `$_[1] };"
-    $wrappedCommand += "try{ Set-Location (Get-Content `$cdOut) }catch{};"
-    $wrappedCommand += "Remove-Item `$setOut;"
-    $wrappedCommand += "Remove-Item `$cdOut;"
+    $wrappedCommand += "cmd /s /c `" $line & set > $($script:setOutTmpFile.FullName) & cd > $($script:cdOutTmpFile.FullName) `";"
+    $wrappedCommand += "foreach(`$line in (Get-Content `"$($script:setOutTmpFile.FullName)`")){ `$spl = (`$line -split `"=`"); Set-Item -Path `"env:`$(`$spl[0])`" -Value `$spl[1] };"
+    $wrappedCommand += "try{ Set-Location (Get-Content `"$($script:cdOutTmpFile.FullName)`") }catch{};"
     $wrappedCommand
+}
+
+$MyInvocation.MyCommand.ScriptBlock.Module.OnRemove = {
+    Remove-Item $script:setOutTmpFile
+    Remove-Item $script:cdOutTmpFile
 }
 
 $script:oldPSConsoleHostReadline = $function:global:PSConsoleHostReadline
 $script:oldTabExpansion2 = $function:global:TabExpansion2
+$script:setOutTmpFile = New-TemporaryFile
+$script:cdOutTmpFile = New-TemporaryFile
 
 Export-ModuleMember -Function * -Alias *

@@ -21,6 +21,13 @@ Import-Module CmdMode\CmdMode.psm1
 ```
 
 ### How to Use
-Once the module is imported, run `cmdmode` (or `Enter-CmdMode`) to enter CMD mode.  In CMD mode, all commands are run as if you were running cmd.exe natively, but the interactive shell enhancements provided by PowerShell/PSReadLine, as well as any customization, are retained.  This means you'll have enhanced tab-completion (bash-style, if enabled in PSReadLine), persistent history, superior line editing capabilities (cut/copy/paste/select etc.), interactive history searching via Ctrl-R, any custom PSReadLine key handlers, and many other interactive shell features present in PowerShell.
+Once the module is imported, run `cmdmode` (or `Enter-CmdMode`) to enter CMD mode.  
+
+In CMD mode, all commands are run as if you were running cmd.exe natively, but the interactive shell enhancements provided by PowerShell/PSReadLine, as well as any customization, are retained.  
+
+This means you'll have enhanced tab-completion (bash-style, if enabled in PSReadLine), persistent history, superior line editing capabilities (cut/copy/paste/select etc.), interactive history searching via Ctrl-R, any custom PSReadLine key handlers, and many other interactive shell features present in PowerShell.
 
 To switch back to PowerShell, run `psmode`.  You will notice that any changes you made to environment variables while in CMD mode are present in PowerShell.
+
+## Caveats
+I've been using this myself without many issues for a while, but I haven't extensively tested it.  I'm sure there are ways to break it, and that not everything works properly.  Please open a bug if you encounter any problems.

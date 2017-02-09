@@ -5,7 +5,7 @@ Allows for switching back and forth between CMD and PowerShell in the same sessi
 
 ## Getting Started
 ### Prequisites
-[PSReadLine](https://github.com/lzybkr/PSReadLine) is required.  If you are not on Windows 10, you will need to install it prior to using CmdMode.
+[PSReadLine](https://github.com/lzybkr/PSReadLine), which is installed by default on Windows 10, is required.  If you are not on Windows 10, and install CmdMode via the PowerShell Gallery, it will be automatically installed also.  Otherwise, you will need to install it prior to using CmdMode.
 
 ### Installation
 Install via the [PowerShell Gallery](https://www.powershellgallery.com) like so:

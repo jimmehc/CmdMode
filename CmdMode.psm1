@@ -43,7 +43,7 @@ function Enter-CmdMode
             )
 
             $results = & $script:oldTabExpansion2 @PSBoundParameters
-            [System.Management.Automation.CompletionResult]$realMatches = @()
+            [System.Management.Automation.CompletionResult[]]$realMatches = @()
             foreach($result in $results.CompletionMatches)
             {
                 $isRealMatch = $false;
@@ -195,4 +195,4 @@ $script:oldTabExpansion2 = $function:global:TabExpansion2
 $script:setOutTmpFile = New-TemporaryFile
 $script:cdOutTmpFile = New-TemporaryFile
 
-Export-ModuleMember -Function * -Alias *
+Export-ModuleMember -Function @("Enter-CmdMode","Enter-PSMode") -Alias @("cmdmode")
